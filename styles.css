@@ -5,15 +5,8 @@ z-index: -2;
 display: flex;
 width: 500px;
     height: 500px;
-    padding: 200px;
+    padding: 280px;
     margin-top: 50px;
-    margin-left: 450px;
-    margin-right: 450px;
-}
-
-
-.gridBox {
-display: flex;
-position: relative;
-z-index: 1;
+    margin-left: 300px;
+    margin-right: 300px;
 }
