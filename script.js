@@ -1,73 +1,66 @@
 window.onload = function() {
+  const container = document.createElement('div');
+  container.id = 'grid-container';
+  document.body.appendChild(container);
 
-    
+  function createGrid(size) {
+    const container = document.getElementById('grid-container');
+    container.innerHTML = '';
 
-    
-
-const container = document.createElement('gridBox');
-
-for (let i =0; i < 16; i++) {
-    for (let j = 0; j < 16; j++) {
-    const square = document.createElement('gridBox');
-    container.appendChild(square);
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+        const square = document.createElement('div');
+        square.classList.add('grid-square');
+        container.appendChild(square);
+        }
     }
-}
 
-const squares = container.querySelectorAll('gridBox');
-squares.forEach(square => {
-    square.style.width = '20px';
-    square.style.height = '20px';
-});
+    const squares = container.querySelectorAll('.grid-square');
+    squares.forEach(square => {
+        square.style.width = `${960 / size}px`;
+        square.style.height = `${960 / size}px`;
+    });
 
-squares.forEach(square => {
-square.addEventListener('mouseenter', function() {
-
-square.style.backgroundColor = 'cyan';
-});
-});
-
-
-document.body.appendChild(container);
-
-squares.forEach(square => {
-square.style.float = 'left';
-});
-
-createGrid(16);
-};
-
-function createGrid(size) {
-
-  let container = document.getElementById("grid-container");
-  while (container.firstChild) {
-    container.removeChild(container.firstChild);
+    squares.forEach(square => {
+      square.addEventListener('mouseenter', function() {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+      });
+    });
+    
   }
 
-  let squareSize = 960 / size;
+  function promptGridSize() {
+      let size = prompt("Enter the number of squares per side for the new grid (maximum 100):");
 
-  for (let i = 0; i < size; i++) {
-    var row = document.createElement("div");
-    row.classList.add("row");
-    for (let j = 0; j < size; j++) {
-      let square = document.createElement("div");
-      square.classList.add("square");
-      square.style.width = squareSize + "px";
-      square.style.height = squareSize + "px";
-      row.appendChild(square);
-    }
-    container.appendChild(row);
-  }
-}
+      if (!isNaN(size) && size > 0 && size <= 100) {
+        createGrid(size);
+      } else {
+        alert("Invalid input. Please enter a number between 1 and 100.");
+      }
+  };
 
-function promptGridSize() {
-    let size = prompt("Enter the number of squares per side for the new grid (maximum 100):");
-      
-    if (!isNaN(size) && size > 0 && size <= 100) {
-      createGrid(size);
-    } else {
-      alert("Invalid input. Please enter a number between 1 and 100.");
-    }
+  createGrid(16);
+
+  const button = document.createElement('button');
+  button.textContent = 'Redefine the stars with KingdomKlyuch';
+  document.body.appendChild(button);
+  
+
+  button.addEventListener('click', promptGridSize);
+  button.addEventListener('mouseenter', function() {
+    const interval = setInterval(() => {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      button.style.color = `rgb(${r}, ${g}, ${b})`;
+    }, 100);
+  
+    button.addEventListener('mouseleave', function() {
+      clearInterval(interval);
+    });
+  });
+  
 };
-
-
-
