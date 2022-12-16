@@ -1,0 +1,19 @@
+body {
+background-image: url(https://camo.envatousercontent.com/9ad907c36b207478a678422861d68400b360711c/68747470733a2f2f692e70696e696d672e636f6d2f6f726967696e616c732f38352f38302f37662f38353830376662333430373361646464346632313135373864373762646463372e6a7067);
+position: absolute;
+z-index: -2;
+display: flex;
+width: 500px;
+    height: 500px;
+    padding: 200px;
+    margin-top: 50px;
+    margin-left: 450px;
+    margin-right: 450px;
+}
+
+
+.gridBox {
+display: flex;
+position: relative;
+z-index: 1;
+}
